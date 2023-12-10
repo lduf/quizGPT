@@ -19,7 +19,7 @@ QuizGPT is an innovative web application designed to create and participate in q
 - Target Audience:
   Students, educators, and anyone interested in testing their knowledge or preparing for exams.
 
-##Technologies Used:
+## Technologies Used:
 
 Backend: Python with Flask or Django Framework (depending on your preference for simplicity or scalability).
 Frontend: JavaScript, HTML, CSS (React or Vue.js for a more dynamic frontend).
