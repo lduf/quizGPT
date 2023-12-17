@@ -17,10 +17,10 @@
                         </label>
                     @endforeach
                 </div>
+            <button type="button" id="submit-answer" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md mb-2 mt-4">Corriger</button>
             </div>
-            <button type="button" id="submit-answer" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow-md mb-4">Corriger</button>
         </form>
-        <button id="next-question" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg shadow-md">Question Suivante</button>
+        <button id="next-question" class="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg shadow-md">Question Suivante</button>
     </div>
 
     <script>
@@ -81,6 +81,7 @@
     <style>
         .prop-label {
             transition: background-color 0.3s, border 0.3s;
+            font-size: 1rem; /* Taille de police adaptée */
         }
         .correct-answer {
             background-color: #86f1a1; /* Vert clair */
@@ -97,8 +98,11 @@
         .bold-text {
             font-weight: bold;
         }
-
+        #submit-answer, #next-question {
+            font-size: 1.25rem; /* Boutons plus grands pour une meilleure accessibilité */
+        }
     </style>
+
 
 
 
