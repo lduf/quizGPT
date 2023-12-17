@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.prop-label {
+    transition: all 0.3s ease;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.prop-label:hover {
+    background-color: #ebf8ff;
+    transform: translateY(-4px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.prop-label input[type="checkbox"]:checked + span {
+    font-weight: bold;
+    color: #1a202c; /* Darker text color for selected option */
+}
+
+.prop-label input[type="checkbox"]:checked + span {
+    background-color: #48bb78; /* Couleur de fond pour la réponse sélectionnée */
+    color: white; /* Couleur du texte pour la réponse sélectionnée */
+    border-color: #38a169; /* Couleur de bordure pour la réponse sélectionnée */
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles additionnels pour les boutons de réponses */
+.button-response {
+    transition: all 0.3s ease;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button-response:hover {
+    background-color: #f0fff4; /* Couleur de survol pour les réponses */
+}
