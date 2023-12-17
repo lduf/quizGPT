@@ -5,7 +5,13 @@
         <form id="quiz-form" action="{{ route('quiz.correct-single-question', ['quiz' => $quiz->id, 'question' => $question->id]) }}" method="POST">
             @csrf
             <div class="question mb-4 p-4 bg-gradient-to-r from-green-100 to-blue-200 rounded-lg shadow-2xl">
-                <h3 class="font-bold text-xl text-gray-700 mb-4">{{ $question->title }}</h3>
+                <h3 class="font-bold text-xl text-gray-700 mb-4">{{ $question->title }}
+                    <span class="difficulty text-sm ml-2">
+                            @for ($i = 0; $i < $question->difficulty; $i++)
+                            <span class="inline-block text-yellow-400">★</span>
+                        @endfor
+                        </span>
+                </h3>
                 <div class="propositions">
                     @php
                         $propositions = ['a' => $question->a, 'b' => $question->b, 'c' => $question->c, 'd' => $question->d];
