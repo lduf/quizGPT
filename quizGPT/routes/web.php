@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\QuizController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,9 +34,21 @@ Route::get('/generate-questions/{quiz}', 'App\Http\Controllers\QuizController@ge
 Route::post('/generate-questions/{quiz}', 'App\Http\Controllers\QuizController@generateQuestions')
     ->name('quiz.generate-questions');
 
-Route::get('/quiz-status/{quiz}', [App\Http\Controllers\QuizController::class, 'getQuizStatus']);
+Route::get('/quiz-status/{quiz}', [QuizController::class, 'getQuizStatus']);
 
-Route::post('/quizzes/{quiz}/submit-answers', [App\Http\Controllers\QuizController::class, 'submitAnswers'])->name("quiz.submit");
+Route::post('/quizzes/{quiz}/submit-answers', [QuizController::class, 'submitAnswers'])->name("quiz.submit");
+
+// Route pour soumettre la réponse à une question unique
+Route::get('/single-question/{quiz}', [QuizController::class, 'singleQuestion'])
+    ->name('quiz.single-question');
+Route::post('/single-question/{quiz}/questions/{question}/correct', [QuizController::class, 'correctSingleQuestion'])
+    ->name('quiz.correct-single-question');
+
+Route::get('/quizzes/{quiz}/questions', [QuizController::class, 'showQuestions'])->name('quiz.show-questions');
+
+
+
+
 
 
 

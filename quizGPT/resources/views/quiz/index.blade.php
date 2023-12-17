@@ -8,10 +8,13 @@
         <div class="grid md:grid-cols-3 gap-4 mb-6">
             @foreach ($quizzes as $quiz)
                 <div class="bg-white rounded-lg shadow-lg p-4 relative hover:scale-105 transform transition-all duration-300">
-                    <h3 class="font-bold text-xl mb-2">{{ $quiz->title }}</h3>
+                    <h3 class="font-bold text-xl mb-2"><a href="{{ route("quiz.show-questions", $quiz->id) }}">{{ $quiz->title }}</a></h3>
                     <p>{{ $quiz->subject }}</p>
-                    <p class="text-sm text-gray-600 mb-2">Questions: {{ $quiz->questions->count() }}</p>
+                    <p class="text-sm text-gray-600 mb-2">Questions: {{ $quiz->questions->count() }}</p> <!-- Assuming you have the 'questions_count' attribute -->
                     <div class="flex justify-between">
+                            <button onclick="window.location='{{ route('quiz.single-question', ['quiz' => $quiz->id]) }}'" class="bg-cyan-500 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded">
+                                Unique
+                            </button>
                         <button onclick="window.location='{{ route('quiz.show', ['quiz' => $quiz->id]) }}'" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                             Commencer
                         </button>
@@ -63,3 +66,24 @@
         }
     </style>
 @endsection
+@push('scripts')
+    <script>
+        @foreach ($quizzes as $quiz)
+        if (document.getElementById('quiz-{{ $quiz->id }}')) {
+            setInterval(function() {
+                fetch(`/quiz-status/{{ $quiz->id }}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status !== 'pending') {
+                            const loader = document.getElementById('loader-{{ $quiz->id }}');
+                            if (loader) {
+                                loader.style.display = 'none';
+                            }
+                        }
+                    })
+                    .catch(error => console.error('Erreur:', error));
+            }, 2000); // Mettez à jour toutes les 2 secondes
+        }
+        @endforeach
+    </script>
+@endpush
