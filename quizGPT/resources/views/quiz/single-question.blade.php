@@ -24,6 +24,12 @@
     </div>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Scroll automatique pour centrer la question lors du chargement
+            const questionContainer = document.getElementById('single-question-container');
+            questionContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+
         document.getElementById('submit-answer').addEventListener('click', function() {
             var form = document.getElementById('quiz-form');
             var formData = new FormData(form);
@@ -68,8 +74,9 @@
                         }
                     });
 
-                    // Désactiver la soumission de formulaire ultérieure
-                    document.getElementById('submit-answer').disabled = true;
+                    // Désactiver la soumission de formulaire ultérieure et changer le bouton
+                    document.getElementById('submit-answer').style.display = 'none';
+                    document.getElementById('next-question').style.display = 'block';
                 })
                 .catch(error => console.error('Erreur:', error));
         });
@@ -78,6 +85,7 @@
             window.location.href = "{{ route('quiz.single-question', ['quiz' => $quiz->id]) }}";
         });
     </script>
+
     <style>
         .prop-label {
             transition: background-color 0.3s, border 0.3s;
