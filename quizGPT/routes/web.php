@@ -22,6 +22,10 @@ Route::resource(
     'App\Http\Controllers\QuizController'
 );
 
+Route::get('/quiz/{quiz}/{nbQuestions?}',
+    'App\Http\Controllers\QuizController@show'
+)->name('quiz.show');
+
 
 Route::get('/generate-questions/{quiz}', 'App\Http\Controllers\QuizController@getGenerateQuestionsView')
     ->name('quiz.generate-questions-view');

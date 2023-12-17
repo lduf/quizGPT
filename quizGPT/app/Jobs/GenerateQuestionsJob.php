@@ -9,6 +9,8 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Models\Quiz;
+use Illuminate\Support\Facades\URL;
+
 class GenerateQuestionsJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
@@ -28,6 +30,7 @@ class GenerateQuestionsJob implements ShouldQueue
 
     public function handle()
     {
+        URL::
         $openaiService = resolve(OpenAIService::class);
         $openaiService->generateAndStoreQuestions($this->quiz,
             $this->numberOfQuestions,
